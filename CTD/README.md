@@ -82,8 +82,6 @@ If you use this code or paper, please cite as below:
 ---
 
 ## Contact
-
 - Email: [jeongho.min@unist.ac.kr](mailto:jeongho.min@unist.ac.kr)
 - Issues and PRs are welcome!
-# CTD
-# ctd_icml2023
+
