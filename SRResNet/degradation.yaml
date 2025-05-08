@@ -1,0 +1,24 @@
+degradations:
+  -
+    type: RandomBlur
+    bins: 10
+    kernel_size: 21
+    sigma_range: [0, 10]
+  -
+    type: RandomResize
+    bins: 1
+    scale_range: [0.5, 0.5]
+    arb_size : 
+    interpolation: bicubic
+    
+  -
+    type: RandomNoise
+    bins: 10
+    noise_range: [0,100]
+    is_gray_noise: true
+  
+  -
+    type: RandomBlur
+    bins: 10
+    kernel_size: 21
+    sigma_range: [0, 10]
