@@ -1,0 +1,58 @@
+metric:
+  type: FrechetDistanceSoftmax
+  model:
+    type: AlexNetImageNet
+    pretrained : False
+
+model:
+  type: AlexNetImageNet
+  
+degradations:
+  -
+    type: RandomBlur
+    bins: 5
+    kernel_size: 101
+    sigma_range: [0, 50]
+  -
+    type: RandomResize
+    bins: 1
+    scale_range: [0.25, 0.25]
+    arb_size : 
+    interpolation: bilinear
+  -
+    type: RandomNoise
+    bins: 5
+    noise_range: [0,10]
+    is_gray_noise: True
+  -
+    type: RandomBlur
+    bins: 5
+    kernel_size: 101
+    sigma_range: [0, 50]
+
+dataset:    
+  tgt_path: /nas/k8s/dev/research/intern/jhmin/test_project/Datasets/paired_eo/test/lr
+  src_path: /nas/k8s/dev/research/intern/jhmin/test_project/Datasets/paired_eo/test/hr
+  
+  # degradations:
+  #   -
+  #     type: RandomBlur
+  #     bins: 1
+  #     kernel_size: 3
+  #     sigma_range: [3, 4]
+  #   -
+  #     type: RandomResize
+  #     bins: 1
+  #     scale_range: [0.25, 0.25]
+  #     arb_size : 430
+  #     interpolation: bicubic
+  #   -
+  #     type: RandomNoise
+  #     bins: 1
+  #     noise_range: [0, 10]
+  #     is_gray_noise: true
+  #   -
+  #     type: RandomJPEGCompression
+  #     bins: 1
+  #     quality_range: [30, 50]
+  #     color_type: color

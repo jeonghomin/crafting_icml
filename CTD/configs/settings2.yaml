@@ -1,0 +1,54 @@
+metric:
+  type: FrechetDistanceSoftmax
+  model:
+    type: AlexNetImageNet
+
+model:
+  type: AlexNetImageNet
+
+degradations:
+  -
+    type: RandomBlur
+    bins: 5
+    kernel_size: 3
+    sigma_range: [0, 5]
+  -
+      type: RandomResize
+      bins: 1
+      scale_range: [0.25, 0.25]
+      interpolation: bicubic
+  -
+    type: RandomNoise
+    bins: 5
+    noise_range: [0, 50]
+    is_gray_noise: true
+  -
+    type: RandomJPEGCompression
+    bins: [[30, 50], [50, 70], [70, 90]]
+    quality_range: [30, 90]
+    color_type: color
+
+dataset:
+  tgt_path: /nas/k8s/dev/research/intern/jhmin/test_project/Datasets/PIPAL/CTD/test/setting2/LR/
+  src_path: /nas/k8s/dev/research/intern/jhmin/test_project/Datasets/DIV2K/DIV2K_train_HR
+  degradations:
+    -
+      type: RandomBlur
+      bins: 1
+      kernel_size: 3
+      sigma_range: [0.5, 1.5]
+    -
+      type: RandomResize
+      bins: 1
+      scale_range: [0.25, 0.25]
+      interpolation: bicubic
+    -
+      type: RandomNoise
+      bins: 1
+      noise_range: [15, 25]
+      is_gray_noise: true
+    -
+      type: RandomJPEGCompression
+      bins: 1
+      quality_range: [75, 85]
+      color_type: color

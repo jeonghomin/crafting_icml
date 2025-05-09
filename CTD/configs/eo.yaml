@@ -1,0 +1,69 @@
+metric:
+  type: FrechetDistanceSoftmax
+  model:
+    type: AlexNetImageNet
+    pretrained : False
+
+model:
+  type: AlexNetImageNet
+  
+degradations:
+  -
+    type: RandomBlur
+    bins: 10
+    kernel_size: 51
+    sigma_range: [0, 100]
+  -
+    type: RandomResize
+    bins: 1
+    scale_range: [0.25, 0.25]
+    arb_size : 
+    interpolation: bilinear
+  -
+    type: RandomNoise
+    bins: 5
+    noise_range: [0,10]
+    is_gray_noise: false
+
+  -
+    type: RandomJPEGCompression
+    bins: [[30, 50], [50, 70], [70, 90], [90,110], [110,130]]
+    quality_range: [30, 130]
+    color_type: color
+  # -
+  #   type: RandomJPEGCompression
+  #   bins: [[30, 50], [50, 70], [70, 90]]
+  #   quality_range: [30, 90]
+  #   color_type: color
+  # -
+    # type: RandomBlur
+    # bins: 5
+    # kernel_size: 11
+    # sigma_range: [0, 50]
+
+dataset:    
+  tgt_path: /nas/k8s/dev/research/intern/jhmin/test_project/Datasets/paired_eo/val/lr
+  src_path: /nas/k8s/dev/research/intern/jhmin/test_project/Datasets/paired_eo/val/hr
+  
+  # degradations:
+  #   -
+  #     type: RandomBlur
+  #     bins: 1
+  #     kernel_size: 3
+  #     sigma_range: [3, 4]
+  #   -
+  #     type: RandomResize
+  #     bins: 1
+  #     scale_range: [0.25, 0.25]
+  #     arb_size : 430
+  #     interpolation: bicubic
+  #   -
+  #     type: RandomNoise
+  #     bins: 1
+  #     noise_range: [0, 10]
+  #     is_gray_noise: true
+  #   -
+  #     type: RandomJPEGCompression
+  #     bins: 1
+  #     quality_range: [30, 50]
+  #     color_type: color
